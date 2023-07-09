@@ -6,7 +6,7 @@ interface MyAppProps {
   Component: any;
   pageProps: { [k: string]: number };
 }
+
 export default function MyApp({ Component, pageProps }: MyAppProps) {
-  console.log("asdffdafadsfasd");
   return <Component {...pageProps} />;
 }
