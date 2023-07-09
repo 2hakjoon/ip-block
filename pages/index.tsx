@@ -5,8 +5,7 @@ import {
   InferGetStaticPropsType,
 } from "next";
 import requestIp from "request-ip";
-
-const ipHandler = new IPHandler();
+import { ipHandler } from "./_app";
 
 // This gets called on every request
 export async function getServerSideProps(context: GetServerSidePropsContext) {

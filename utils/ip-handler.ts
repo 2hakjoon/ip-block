@@ -11,12 +11,13 @@ export class IPHandler {
     if (this.ipObj[ip] === 0) {
       delete this.ipObj[ip];
     }
-    this.ipObj[ip] = this.ipObj[ip] === undefined ? 0 : this.ipObj[1] + 1;
+    this.ipObj[ip] = this.ipObj[ip] === undefined ? 0 : this.ipObj[ip] + 1;
+    console.log("this.ipObj[ip]: ", this.ipObj[ip]);
     setTimeout(() => {
-      if (!this.ipObj) {
+      if (!this.ipObj[ip]) {
         return;
       }
-      if (this.ipObj) {
+      if (this.ipObj[ip]) {
         this.ipObj[ip] = this.ipObj[ip] - 1;
       }
     }, 1000);
