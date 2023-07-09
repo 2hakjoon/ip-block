@@ -13,11 +13,11 @@ export class IPHandler {
       if (!this.ipObj[ip]) {
         return;
       }
-      if (this.ipObj[ip] === 0) {
-        delete this.ipObj[ip];
-      }
       if (this.ipObj[ip]) {
         this.ipObj[ip] = this.ipObj[ip] - 1;
+      }
+      if (this.ipObj[ip] === 0) {
+        delete this.ipObj[ip];
       }
     }, 10000);
     return true;
