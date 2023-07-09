@@ -5,14 +5,24 @@ import { ipHandler } from "./_app";
 // This gets called on every request
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const detectedIp = requestIp.getClientIp(context.req) as string;
-  ipHandler.connect(detectedIp);
+  const result = ipHandler.connect(detectedIp);
 
-  return { props: { ipObj: ipHandler.getIpObj() } };
+  return { props: { ipObj: ipHandler.getIpObj(), detectedIp, result } };
 }
 
 export default function Home({
   ipObj,
+  detectedIp,
+  result,
 }: InferGetStaticPropsType<typeof getServerSideProps>) {
   console.log(ipObj);
-  return <>테스트</>;
+  return (
+    <div>
+      <span>
+        {`접속ip : ${detectedIp}`}
+        {`접속 가능 횟수 : ${ipObj[detectedIp]}/3`}
+        {`현재 접속 가능 ?  : ${result ? "가능" : "불가능"}`}
+      </span>
+    </div>
+  );
 }
