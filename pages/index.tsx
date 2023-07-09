@@ -19,9 +19,9 @@ export default function Home({
   return (
     <div>
       <div>
-        <div>{"접속 중인 ip록록"}</div>
+        <div>{"접속 중인 ip목록"}</div>
         {Object.keys(ipObj).map((ip) => (
-          <span key={ip}>{`${ip} : ${ipObj[ip]}`}</span>
+          <div key={ip}>{`ip : ${ip} : ${ipObj[ip]}회`}</div>
         ))}
       </div>
       <br />

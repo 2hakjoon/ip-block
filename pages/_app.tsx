@@ -1,6 +1,7 @@
 import { IPHandler } from "@/utils/ip-handler";
 
 export const ipHandler = new IPHandler();
+export const ipHandler2 = new IPHandler();
 
 interface MyAppProps {
   Component: any;
