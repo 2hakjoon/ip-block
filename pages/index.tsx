@@ -1,3 +1,4 @@
+import { IPHandler } from "@/utils/ip-handler";
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
@@ -5,18 +6,18 @@ import {
 } from "next";
 import requestIp from "request-ip";
 
-const ips: { [k: string]: number } = {};
+const ipHandler = new IPHandler();
 
 // This gets called on every request
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const detectedIp = requestIp.getClientIp(context.req) as string;
-  ips[detectedIp] = ips[detectedIp] === undefined ? 0 : ips[detectedIp] + 1;
-  return { props: { ips } };
+  ipHandler.connect(detectedIp);
+  return { props: { ipObj: ipHandler.getIpObj() } };
 }
 
 export default function Home({
-  ips,
+  ipObj,
 }: InferGetStaticPropsType<typeof getServerSideProps>) {
-  console.log(ips);
+  console.log(ipObj);
   return <>테스트</>;
 }
