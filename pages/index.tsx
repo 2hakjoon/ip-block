@@ -18,10 +18,22 @@ export default function Home({
   console.log(ipObj);
   return (
     <div>
+      <div>
+        <div>{"접속 중인 ip록록"}</div>
+        {Object.keys(ipObj).map((ip) => (
+          <span key={ip}>{`${ip} : ${ipObj[ip]}`}</span>
+        ))}
+      </div>
+      <br />
+      <br />
+      <br />
+
       <span>
-        {`접속ip : ${detectedIp}`}
+        {`현재 접속 ip : ${detectedIp}`}
+        <br />
         {`접속 가능 횟수 : ${ipObj[detectedIp]}/3`}
-        {`현재 접속 가능 ?  : ${result ? "가능" : "불가능"}`}
+        <br />
+        {`현재 접속 가능 여부  : ${result ? "가능" : "불가능"}`}
       </span>
     </div>
   );
