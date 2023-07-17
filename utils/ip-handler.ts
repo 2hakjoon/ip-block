@@ -16,6 +16,7 @@ export class IPHandler {
   }
 
   connect(ip: string) {
+    console.log("ip: ", ip);
     this.ipObj[ip] = this.ipObj[ip] === undefined ? 1 : this.ipObj[ip] + 1;
     if (this.ipObj[ip] > 3) {
       return false;
