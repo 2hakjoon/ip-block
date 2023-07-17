@@ -6,6 +6,7 @@ export class IPHandler {
     this.ipObj = {};
     this.persistIpObj = {};
     setInterval(() => {
+      console.log("아이피 횟수 클렌징");
       for (let ip of Object.keys(this.ipObj)) {
         if (this.ipObj[ip]) {
           this.ipObj[ip] = this.ipObj[ip] - 1;
