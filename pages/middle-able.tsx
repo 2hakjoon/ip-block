@@ -1,3 +1,11 @@
+import { useRouter } from "next/router";
+
 export default function MiddleAble() {
-  return <div>접속 가능! 새로고침 ㄱㄱ</div>;
+  const router = useRouter();
+  return (
+    <div>
+      <div>{"접속가능 페이지"}</div>
+      <div>{`${router?.query?.ip} : ${router?.query?.cnt}`}</div>
+    </div>
+  );
 }

@@ -1,8 +1,10 @@
 export class IPHandler {
   private ipObj: { [k: string]: number };
+  private persistIpObj: { [k: string]: number };
 
   constructor() {
     this.ipObj = {};
+    this.persistIpObj = {};
     setInterval(() => {
       for (let ip of Object.keys(this.ipObj)) {
         if (this.ipObj[ip]) {
@@ -16,8 +18,11 @@ export class IPHandler {
   }
 
   connect(ip: string) {
-    console.log("ip: ", ip);
     this.ipObj[ip] = this.ipObj[ip] === undefined ? 1 : this.ipObj[ip] + 1;
+
+    this.persistIpObj[ip] =
+      this.persistIpObj[ip] === undefined ? 1 : this.persistIpObj[ip] + 1;
+
     if (this.ipObj[ip] > 3) {
       return false;
     }
@@ -30,5 +35,13 @@ export class IPHandler {
 
   getConnectCount(ip: string) {
     return this.ipObj[ip] || 0;
+  }
+
+  getPersistIpObj() {
+    return this.persistIpObj;
+  }
+
+  getPersistConnectCount(ip: string) {
+    return this.persistIpObj[ip] || 0;
   }
 }
