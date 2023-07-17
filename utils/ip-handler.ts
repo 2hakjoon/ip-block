@@ -16,14 +16,18 @@ export class IPHandler {
   }
 
   connect(ip: string) {
-    console.log("ip: ", ip);
-    if (this.ipObj[ip] > 2) return false;
-
     this.ipObj[ip] = this.ipObj[ip] === undefined ? 1 : this.ipObj[ip] + 1;
+    if (this.ipObj[ip] > 3) {
+      return false;
+    }
     return true;
   }
 
   getIpObj() {
     return this.ipObj;
+  }
+
+  getConnectCount(ip: string) {
+    return this.ipObj[ip] || 0;
   }
 }
