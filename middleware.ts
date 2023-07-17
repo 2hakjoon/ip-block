@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { ipHandler2 } from "./pages/_app";
+import { IPHandler } from "./utils/ip-handler";
+
+const ipHandler2 = new IPHandler();
 
 export function middleware(request: NextRequest) {
+  console.log("request.ip: ", request.ip);
   const result = ipHandler2.connect(request.ip as string);
+  console.log("result: ", ipHandler2.getIpObj());
   if (!result) {
     return NextResponse.redirect(new URL("/middle-disable", request.url));
   }
